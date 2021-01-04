@@ -1,5 +1,8 @@
 const request = require('request');
 
+
+
+
 const forecast = (lat, lon, callback) => {
     // console.log('Input: lat',lat,' lon', lon);
     // console.log('');
@@ -12,12 +15,11 @@ const forecast = (lat, lon, callback) => {
         } else {
             const desc = body.current.weather_descriptions[0];
             const temperature = body.current.temperature;
+            const humidity = body.current.humidity;
             const feelslike = body.current.feelslike;
-            const text = `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike} degrees.`;
+            const text = `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike} degrees. The humidity is ${humidity}.`;
             callback(undefined, {
-                forecast: text,
-                temperature,
-                feelslike
+                forecast: text
             });
         }
     })
